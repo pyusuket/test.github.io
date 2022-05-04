@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+    <html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>脳卒中評価チャート</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>脳卒中評価チャート</h1>
+        {{-- フォーム --}}
+        <form method="post">
+            <label>入力日<input type="date" class="date" name="create_day"></label>
+                <h2>基本情報</h2>
+                    <table class="Basic_Information-table">
+                        <tr>
+                            <th class="Basic_Information-item">ID</th>
+                            <td class="Basic_Information-body"><input type="number" min="1" max="9999999" class="form-number" name="patient_id" value="{{old("patient_id")}}"></td>
+                        </tr>
+                        <tr>
+                            <th class="Basic_Information-item">年齢</th>
+                            <td class="Basic_Information-body"><input type="number" min="1" max="130" class="form-number" name="age" value="{{old("age")}}"></td>
+                        </tr>
+                        <tr>
+                            <th class="Basic_Information-item">性別</th>
+                            <td class="Basic_Information-body">
+                                <label><input type="radio" class="form-radio" name="sex" value="1" ><span>男性</span></label>
+                                <label><input type="radio" class="form-radio" name="sex" value="2" ><span>女性</span></label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="Basic_Information-item">診断名</th>
+                            <td class="Basic_Information-body">
+                                <select class="form-select" name="diagnose" >
+                                    <option hidden>選択して下さい</option>
+                                    {{-- オプションタグにold関数を適用させる --}}
+                                    <option value="1" @if(1 === (int)old('diagnose')) selected @endif>脳出血</option>
+                                    <option value="2" @if(2 === (int)old('diagnose')) selected @endif>脳梗塞</option>
+                                    <option value="3" @if(3 === (int)old('diagnose')) selected @endif>くも膜下出血</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="Basic_Information-item">身長</th>
+                            <td class="Basic_Information-body"><input type="number" min="1" max="250" class="form-number" name="tall" value="{{ old('tall') }}"></td>
+                        </tr>
+                        <tr>
+                            <th class="Basic_Information-item">体重</th>
+                            <td class="Basic_Information-body"><input type="number" min="1" max="250" class="form-number" name="weight" value="{{ old('weight') }}"></td>
+                        </tr>
+                    </table>
+                <h2>心身機能・構造</h2>
+                    <table class="Body_function-structure">
+                        <th class="Body_function-structure-item">BRS</th>
+                        <td class="Body_function-structure-body">
+                            <select class="form-list" name="BRS">
+                                <option hidden>選択して下さい</option>
+                                <option value="1">StageⅠ</option>
+                                <option value="2">StageⅡ</option>
+                                <option value="3">StageⅢ</option>
+                                <option value="4">StageⅣ</option>
+                                <option value="5">StageⅤ</option>
+                                <option value="6">StageⅥ</option>
+                            </select>
+                        </td>
+                    </table>
+                <h2>活動</h2>
+                    <table class="Activity",req>
+                        <tr>
+                            <th class="Activity-item">寝返り</th>
+                            <td class="Activity-body">
+                                <select class="form-list" name="Turn_over">
+                                    <option hidden>選択して下さい</option>
+                                    <option value="1">全介助</option>
+                                    <option value="2">最大介助</option>
+                                    <option value="3">中等度介助</option>
+                                    <option value="4">最小介助</option>
+                                    <option value="5">監視</option>
+                                    <option value="6">修正自立</option>
+                                    <option value="7">完全自立</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="Activity-item">起き上がり</th>
+                            <td class="Activity-body">
+                                <select class="form-list" name="Get_up">
+                                    <option hidden>選択して下さい</option>
+                                    <option value="1">全介助</option>
+                                    <option value="2">最大介助</option>
+                                    <option value="3">中等度介助</option>
+                                    <option value="4">最小介助</option>
+                                    <option value="5">監視</option>
+                                    <option value="6">修正自立</option>
+                                    <option value="7">完全自立</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="Activity-item">端坐位</th>
+                            <td class="Activity-body">
+                                <select class="form-list" name="Sitting_position">
+                                    <option hidden>選択して下さい</option>
+                                    <option value="1">全介助</option>
+                                    <option value="2">最大介助</option>
+                                    <option value="3">中等度介助</option>
+                                    <option value="4">最小介助</option>
+                                    <option value="5">監視</option>
+                                    <option value="6">修正自立</option>
+                                    <option value="7">完全自立</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="Activity-item">立ち上がり</th>
+                            <td class="Activity-body">
+                                <select class="form-list" name="Rise_up">
+                                    <option hidden>選択して下さい</option>
+                                    <option value="1">全介助</option>
+                                    <option value="2">最大介助</option>
+                                    <option value="3">中等度介助</option>
+                                    <option value="4">最小介助</option>
+                                    <option value="5">監視</option>
+                                    <option value="6">修正自立</option>
+                                    <option value="7">完全自立</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="Activity-item">立位保持</th>
+                            <td class="Activity-body">
+                                <select class="form-list" name="Standing">
+                                    <option hidden>選択して下さい</option>
+                                    <option value="1">全介助</option>
+                                    <option value="2">最大介助</option>
+                                    <option value="3">中等度介助</option>
+                                    <option value="4">最小介助</option>
+                                    <option value="5">監視</option>
+                                    <option value="6">修正自立</option>
+                                    <option value="7">完全自立</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="Activity-item">移乗</th>
+                            <td class="Activity-body">
+                                <select class="form-list" name="Transfer">
+                                    <option hidden>選択して下さい</option>
+                                    <option value="1">全介助</option>
+                                    <option value="2">最大介助</option>
+                                    <option value="3">中等度介助</option>
+                                    <option value="4">最小介助</option>
+                                    <option value="5">監視</option>
+                                    <option value="6">修正自立</option>
+                                    <option value="7">完全自立</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="Activity-item">床上動作</th>
+                            <td class="Activity-body">
+                                <select class="form-list" name="Floor_operation">
+                                    <option hidden>選択して下さい</option>
+                                    <option value="1">全介助</option>
+                                    <option value="2">最大介助</option>
+                                    <option value="3">中等度介助</option>
+                                    <option value="4">最小介助</option>
+                                    <option value="5">監視</option>
+                                    <option value="6">修正自立</option>
+                                    <option value="7">完全自立</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                <h2>コメント</h2>
+                    <table class="comment">
+                        <th class="comment-item">コメント</th>
+                        <td class="comment-body"><textarea class="comment-area" name="comment" cols="40" rows="5" maxlength="320"></textarea>
+                    </table>
+            <button>送信する</button>
+        </form>
+    </body>
+    </html>
