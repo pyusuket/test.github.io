@@ -33,10 +33,9 @@
                             <td class="Basic_Information-body">
                                 <select class="form-select" name="diagnose" >
                                     <option hidden>選択して下さい</option>
-                                    {{-- オプションタグにold関数を適用させる --}}
-                                    <option value="1" @if(1 === (int)old('diagnose')) selected @endif>脳出血</option>
-                                    <option value="2" @if(2 === (int)old('diagnose')) selected @endif>脳梗塞</option>
-                                    <option value="3" @if(3 === (int)old('diagnose')) selected @endif>くも膜下出血</option>
+                                    <option value="1">脳出血</option>
+                                    <option value="2">脳梗塞</option>
+                                    <option value="3">くも膜下出血</option>
                                 </select>
                             </td>
                         </tr>
